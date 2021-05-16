@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Rejestr_Osob_Zaginionych.Models.Osoba>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Publiczna lista osób zaginionych</h2>
+
+@using (Html.BeginForm("Search", "OsobaWithoutLogin", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-11">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <input type="text" class="form-control" id="search" name="search" style="margin:5px" />
+                        <input type="submit" value="Search" class="btn btn-success " style="margin:5px" />
+                        @Html.ActionLink("Refresh", "", null, new { @class = "btn btn-primary" })
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Imię)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wiek)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Płeć)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ostatnie_miejsce_pobytu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wojewodztwo.Name)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imię)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wiek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Płeć)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ostatnie_miejsce_pobytu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wojewodztwo.Name)
+            </td>
+        </tr>
+    }
+
+</table>
